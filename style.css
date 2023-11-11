@@ -1,0 +1,41 @@
+body {
+    background: #eee;
+    font-family: Arial, sans-serif;
+}
+
+#frm {
+    border: 1px solid gray;
+    width: 25%;
+    border-radius: 2px;
+    margin: 120px auto;
+    background: white;
+    padding: 50px;
+    text-align: center;
+}
+
+label {
+    display: inline-block;
+    width: 30%; /* Adjust the width as needed */
+    text-align: left;
+    margin: 10px 0;
+}
+
+input {
+    display: inline-block;
+    width: 65%; /* Adjust the width as needed */
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+#btn {
+    color: #fff;
+    background: #337ab7;
+    padding: 10px;
+    width: 40%;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+#btn:hover {
+    background: #286090;
+}
