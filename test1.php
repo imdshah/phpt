@@ -45,7 +45,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $searchTerm = $_POST['teamName'];
 
-            // Use LIKE in SQL query for searching
+            // Use %LIKE% in SQL query for searching
             $sql = "SELECT `teamname`, `home_ground` FROM team WHERE teamname LIKE '%$searchTerm%'";
             $result = $conn->query($sql);
 
