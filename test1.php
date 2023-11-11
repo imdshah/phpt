@@ -64,9 +64,8 @@
             }
         }
 
-        $conn->close();
+        $conn->close(); 
         ?>
-         
          
         <div class="manage-teams">
             <a href="ateam.html">Add Team</a> |
