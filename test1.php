@@ -66,8 +66,7 @@
 
         $conn->close(); 
         ?>
-           
-           
+        
         <div class="manage-teams">
             <a href="ateam.html">Add Team</a> |
             <a href="dteam.html">Delete Team</a>
