@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="content">
         <h2>Add Team</h2>
         <form method="post" action="">
+            
             <label for="team_id">Team ID:</label>
             <input type="text" id="team_id" name="team_id" required>
 
