@@ -15,10 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $team_id = $_POST['team_id'];
     $coach_id = $_POST['coach_id'];
     $teamname = $_POST['teamname'];
+    $captainname = $_POST['captainname'];
     $home_ground = $_POST['home_ground'];
 
     // Perform the SQL query to update data in the 'team' table
-    $sql = "UPDATE team SET coach_id = '$coach_id', teamname = '$teamname', home_ground = '$home_ground' WHERE team_id = '$team_id'";
+    $sql = "UPDATE team SET coach_id = '$coach_id', teamname = '$teamname', captainname = '$captainname', home_ground = '$home_ground' WHERE team_id = '$team_id'";
 
     if ($conn->query($sql) === TRUE) {
         echo "Team updated successfully";
@@ -59,6 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="teamname">Team Name:</label>
             <input type="text" id="teamname" name="teamname" required>
+
+            <label for="captainname">Captain Name:</label>
+            <input type="text" id="captainname" name="captainname" required>
 
             <label for="home_ground">Home Ground:</label>
             <input type="text" id="home_ground" name="home_ground" required>

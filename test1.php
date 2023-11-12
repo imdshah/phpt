@@ -11,7 +11,7 @@
         <ul>
             <li><a href="home.html">Home</a></li>
             <li><a href="team.php">Team</a></li>
-            <li><a href="coach.html">Coach</a></li>
+            <li><a href="coach.php">Coach</a></li>
             <li><a href="matches.html">Matches</a></li>
             <li><a href="players.html">Players</a></li>
             <li style="float: right;"><a href="logout.php">Logout</a></li>
@@ -43,15 +43,16 @@
             $searchTerm = $_POST['teamName'];
 
             
-            $sql = "SELECT `team_id`, `teamname`, `home_ground` FROM team WHERE teamname LIKE '%$searchTerm%'";
+            $sql = "SELECT `team_id`, `teamname`, `captainname`, `home_ground` FROM team WHERE teamname LIKE '%$searchTerm%'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 echo "<table border='1'>";
-                echo "<tr><th>Teamname</th><th>Home Ground</th></tr>";
+                echo "<tr><th>Teamname</th><th>Captain Name</th><th>Home Ground</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
+                    echo "<td>" . $row["captainname"] . "</td>";
                     echo "<td>" . $row["home_ground"] . "</td>";
                     echo "</tr>";
                 }
@@ -61,15 +62,16 @@
             }
         } else {
             // Display all teams if no search is performed
-            $sql = "SELECT `team_id`, `teamname`, `home_ground` FROM team";
+            $sql = "SELECT `team_id`, `teamname`, `captainname`, `home_ground` FROM team";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 echo "<table border='1'>";
-                echo "<tr><th>Teamname</th><th>Home Ground</th></tr>";
+                echo "<tr><th>Teamname</th><th>Captain Name</th><th>Home Ground</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
+                    echo "<td>" . $row["captainname"] . "</td>";
                     echo "<td>" . $row["home_ground"] . "</td>";
                     echo "</tr>";
                 }
