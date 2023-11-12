@@ -10,7 +10,7 @@
     <div class="taskbar">
         <ul>
             <li><a href="home.html">Home</a></li>
-            <li><a href="test1.php">Team</a></li>
+            <li><a href="team.php">Team</a></li>
             <li><a href="coach.html">Coach</a></li>
             <li><a href="matches.html">Matches</a></li>
             <li><a href="players.html">Players</a></li>
@@ -27,9 +27,6 @@
         </form>
     
         <h2>Team List</h2>
-        <ul id="teamList">
-        </ul>
-
         <?php
         $host = "localhost";
         $user = "root";
@@ -60,16 +57,36 @@
                 }
                 echo "</table>";
             } else {
-                echo "<li>No teams found</li>";
+                echo "<p>No teams found</p>";
+            }
+        } else {
+            // Display all teams if no search is performed
+            $sql = "SELECT `teamname`, `home_ground` FROM team";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo "<table border='1'>";
+                echo "<tr><th>Teamname</th><th>Home Ground</th></tr>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["teamname"] . "</td>";
+                    echo "<td>" . $row["home_ground"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p>No teams found</p>";
             }
         }
 
-        $conn->close(); 
+        $conn->close();
         ?>
-        
+    
         <div class="manage-teams">
             <a href="ateam.html">Add Team</a> |
-            <a href="dteam.html">Delete Team</a>
+            <a href="dteam.html">Delete Team</a> |
+            <a href="uteam.html">Update Team</a>
+
         </div>
     </div>
 </body>
