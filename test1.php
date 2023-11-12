@@ -43,7 +43,7 @@
             $searchTerm = $_POST['teamName'];
 
             
-            $sql = "SELECT `teamname`, `home_ground` FROM team WHERE teamname LIKE '%$searchTerm%'";
+            $sql = "SELECT `team_id`, `teamname`, `home_ground` FROM team WHERE teamname LIKE '%$searchTerm%'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -51,7 +51,7 @@
                 echo "<tr><th>Teamname</th><th>Home Ground</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["teamname"] . "</td>";
+                    echo "<td><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
                     echo "<td>" . $row["home_ground"] . "</td>";
                     echo "</tr>";
                 }
@@ -61,7 +61,7 @@
             }
         } else {
             // Display all teams if no search is performed
-            $sql = "SELECT `teamname`, `home_ground` FROM team";
+            $sql = "SELECT `team_id`, `teamname`, `home_ground` FROM team";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -69,7 +69,7 @@
                 echo "<tr><th>Teamname</th><th>Home Ground</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["teamname"] . "</td>";
+                    echo "<td><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
                     echo "<td>" . $row["home_ground"] . "</td>";
                     echo "</tr>";
                 }
@@ -86,7 +86,6 @@
             <a href="ateam.php">Add Team</a> |
             <a href="dteam.php">Delete Team</a> |
             <a href="uteam.php">Update Team</a>
-
         </div>
     </div>
 </body>
