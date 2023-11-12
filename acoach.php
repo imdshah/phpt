@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="home.html">Home</a></li>
             <li><a href="test1.php">Team</a></li>
             <li><a href="coach.php">Coach</a></li>
-            <li><a href="matches.html">Matches</a></li>
-            <li><a href="players.html">Players</a></li>
+            <li><a href="matches.php">Matches</a></li>
+            <li><a href="players.php">Players</a></li>
             <li style="float: right;"><a href="logout.php">Logout</a></li>
         </ul>
     </div>
