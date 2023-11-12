@@ -42,7 +42,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $searchTerm = $_POST['teamName'];
 
-            // Use %LIKE% in SQL query for searching
+            
             $sql = "SELECT `teamname`, `home_ground` FROM team WHERE teamname LIKE '%$searchTerm%'";
             $result = $conn->query($sql);
 
@@ -83,9 +83,9 @@
         ?>
     
         <div class="manage-teams">
-            <a href="ateam.html">Add Team</a> |
-            <a href="dteam.html">Delete Team</a> |
-            <a href="uteam.html">Update Team</a>
+            <a href="ateam.php">Add Team</a> |
+            <a href="dteam.php">Delete Team</a> |
+            <a href="uteam.php">Update Team</a>
 
         </div>
     </div>
