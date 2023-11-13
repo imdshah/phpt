@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="coach_age">Coach Age:</label>
             <input type="text" id="coach_age" name="coach_age" required>
-
+            <p>
             <label for="coach_type">Coach Type:</label>
             <input type="text" id="coach_type" name="coach_type" required>
 
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="experience_in_years">Experience (in years):</label>
             <input type="text" id="experience_in_years" name="experience_in_years" required>
-
+            </p>
             <input type="submit" value="Update Coach">
         </form>
     </div>

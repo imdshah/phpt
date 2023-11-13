@@ -39,7 +39,6 @@
             die("Failed to connect with MySQL: ". mysqli_connect_error());
         }
 
-        // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $searchTerm = $_POST['matchDate'];
 
@@ -63,18 +62,24 @@
                 echo "<p>No matches found</p>";
             }
         } else {
-            // Display all matches if no search is performed
-            $sql = "SELECT * FROM matches";
+            // Display all 
+            //$sql = "SELECT * FROM matches";
+            $sql = "SELECT m.match_id, m.hometeam_id, m.awayteam_id, m.date, m.ground, th.team_id AS hometeam_id, th.teamname AS hometeam_name, ta.team_id AS awayteam_id, ta.teamname AS awayteam_name FROM matches m JOIN team th ON m.hometeam_id = th.team_id  JOIN team ta ON m.awayteam_id = ta.team_id";
+
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 echo "<table border='1'>";
-                echo "<tr><th>Match ID</th><th>Home Team ID</th><th>Away Team ID</th><th>Date</th><th>Ground</th></tr>";
+                echo "<tr><th>Match ID</th><th>Home Team Name</th><th>Away Team Name</th><th>Date</th><th>Ground</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["match_id"] . "</a></td>";
-                    echo "<td>" . $row["hometeam_id"] . "</td>";
-                    echo "<td>" . $row["awayteam_id"] . "</td>";
+                    //echo "<td>" . $row["hometeam_id"] . "</td>";
+                    echo "<td>" . $row["hometeam_name"] . "</td>";
+                    
+                    //echo "<td>" . $row["awayteam_id"] . "</td>";
+                    echo "<td>" . $row["awayteam_name"] . "</td>";
+    
                     echo "<td>" . $row["date"] . "</td>";
                     echo "<td>" . $row["ground"] . "</td>";
                     echo "</tr>";

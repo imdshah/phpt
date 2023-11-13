@@ -11,7 +11,7 @@ if(mysqli_connect_errno()) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Form submission, process the data and insert into the database
+    
     $coach_id = $_POST['coach_id'];
     $coachname = $_POST['coachname'];
     $coach_age = $_POST['coach_age'];
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $team_id = $_POST['team_id'];
     $experience_in_years = $_POST['experience_in_years'];
 
-    // Perform the SQL query to insert data into the 'coach' table
+    
     $sql = "INSERT INTO coach (coach_id, coachname, coach_age, coach_type, team_id, experience_in_years) VALUES ('$coach_id', '$coachname', '$coach_age', '$coach_type', '$team_id', '$experience_in_years')";
 
     if ($conn->query($sql) === TRUE) {
@@ -61,16 +61,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="coach_age">Coach Age:</label>
             <input type="text" id="coach_age" name="coach_age" required>
-
+            <p>
             <label for="coach_type">Coach Type:</label>
             <input type="text" id="coach_type" name="coach_type" required>
 
-            <label for="team_id">Team ID (Foreign Key):</label>
+            <label for="team_id">Team ID:</label>
             <input type="text" id="team_id" name="team_id" required>
 
             <label for="experience_in_years">Experience (in years):</label>
             <input type="text" id="experience_in_years" name="experience_in_years" required>
-
+            </p>
             <input type="submit" value="Add Coach">
         </form>
     </div>

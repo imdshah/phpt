@@ -64,7 +64,6 @@
                 echo "<p>No coaches found</p>";
             }
         } else {
-            // Display all coaches if no search is performed
             //$sql = "SELECT * FROM coach";
             $sql = "SELECT c.coach_id, c.coachname, c.coach_age, c.coach_type, c.team_id, c.experience_in_years, t.teamname FROM coach c JOIN team t ON c.team_id = t.team_id ";
             $result = $conn->query($sql);
