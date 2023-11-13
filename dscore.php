@@ -11,13 +11,15 @@ if(mysqli_connect_errno()) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $coachname = mysqli_real_escape_string($conn, $_POST['coachname']);
-    
-    $sql = "DELETE FROM coach WHERE coachname LIKE '%$coachname%'";
+    // Form submission, process the data and delete from the database
+    $match_id = mysqli_real_escape_string($conn, $_POST['match_id']);
+
+    // Perform the SQL query to delete the score from the 'score' table
+    $sql = "DELETE FROM score WHERE match_id LIKE '%$match_id%'";
 
     if ($conn->query($sql) === TRUE) {
         $deletedRows = $conn->affected_rows;
-        echo "$deletedRows coach(es) deleted successfully";
+        echo "$deletedRows score(s) deleted successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -29,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Coach</title>
+    <title>Delete Score</title>
     <link rel="stylesheet" type="text/css" href="style1.css">
 </head>
 <body>
@@ -40,17 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="coach.php">Coach</a></li>
             <li><a href="matches.php">Matches</a></li>
             <li><a href="players.php">Players</a></li>
+            <li><a href="score.php">Scores</a></li>
             <li style="float: right;"><a href="logout.php">Logout</a></li>
         </ul>
     </div>
 
     <div class="content">
-        <h2>Delete Coach</h2>
+        <h2>Delete Score</h2>
         <form method="post" action="">
-            <label for="coachname">Search and Delete Coach by Name:</label>
-            <input type="text" id="coachname" name="coachname" required>
+            <label for="match_id">Search and Delete Score by Match ID:</label>
+            <input type="text" id="match_id" name="match_id" required>
 
-            <input type="submit" value="Delete Coach">
+            <input type="submit" value="Delete Score">
         </form>
     </div>
 </body>

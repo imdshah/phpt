@@ -61,7 +61,7 @@
                 echo "<p>No teams found</p>";
             }
         } else {
-            // Display all teams if no search is performed
+            
             $sql = "SELECT `team_id`, `teamname`, `captainname`, `home_ground` FROM team";
             $result = $conn->query($sql);
 

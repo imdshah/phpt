@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="country">Country:</label>
             <input type="text" id="country" name="country" required>
-
+<p>
             <label for="type">Type:</label>
             <input type="text" id="type" name="type" required>
 
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="team_id">Team ID:</label>
             <input type="text" id="team_id" name="team_id" required>
-
+</p>
             <input type="submit" value="Update Player">
         </form>
     </div>
