@@ -73,25 +73,32 @@
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo "<table border='1' style='width: 100%; border-collapse: collapse;'>";
-                echo "<tr style='background-color: #f2f2f2;'>";//</tr>;//<th>Team Logo</th><th>Team Name</th><th>Captain Name</th><th>Home Ground</th></tr>";
+                echo "<div style='display: flex; flex-wrap: wrap; justify-content: space-around;'>";
+                $i = 1;
+
                 while ($row = $result->fetch_assoc()) {
-                    //echo "<tr>";
                     $img = $row["image"];
-                    //$teamId = $row["team_id"];
                     $teamname = $row["teamname"];
                     $imagePath = "images/" . $img; 
-                    echo "<td style='padding: 5px; text-align: center;'><a href='team_details.php?team_id={$row["team_id"]}'>" . "<img src='$imagePath' alt='Team Logo' style='width: 80px; height: 80px;'><br>$teamname" . "</a></td>";
-                    // echo "<td style='padding: 5px; text-align: center;'><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
-                    // echo "<td style='padding: 5px; text-align: center;'>" . $row["captainname"] . "</td>";
-                    // echo "<td style='padding: 5px; text-align: center;'>" . $row["home_ground"] . "</td>";
-                    //echo "</tr>";
+            
+                    echo "<div class='player-card'>";
+                    //echo "<div style='border: 1px solid #ccc; margin: 10px; padding: 10px; text-align: center; width: 100px;'>";
+                    echo "<a href='team_details.php?team_id={$row["team_id"]}'>" . "<img src='$imagePath' alt='Team Logo' style='width: 80px; height: 80px;'><br>$teamname" . "</a>";
+                    echo "</div>";
+
+                    if ($i % 4 == 0) {
+                        echo "</div>"; 
+                        echo "<div style='display: flex; flex-wrap: wrap; justify-content: space-around;'>"; // Start a new row
+                    }
+            
+                    $i++; 
                 }
-                echo "</tr>";
-                echo "</table>";
+            
+                echo "</div>";
             } else {
                 echo "<p>No teams found</p>";
             }
+            
         }
 
         $conn->close();
