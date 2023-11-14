@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="hometeam_id">Home Team ID:</label>
             <input type="text" id="hometeam_id" name="hometeam_id" required>
-
+     
             <label for="awayteam_id">Away Team ID:</label>
             <input type="text" id="awayteam_id" name="awayteam_id" required>
 
