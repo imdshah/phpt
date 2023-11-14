@@ -26,7 +26,8 @@
             <input type="submit" value="Search">
         </form>
     
-        <h2>Team List</h2>
+        <!-- <h2>Team List</h2> -->
+        <br>
         <?php
         $host = "localhost";
         $user = "root";
@@ -43,38 +44,50 @@
             $searchTerm = $_POST['teamName'];
 
             
-            $sql = "SELECT `team_id`, `teamname`, `captainname`, `home_ground` FROM team WHERE teamname LIKE '%$searchTerm%'";
+            $sql = "SELECT `team_id`, `teamname`, `captainname`, `home_ground`, `image` FROM team WHERE teamname LIKE '%$searchTerm%'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo "<table border='1'>";
-                echo "<tr><th>Teamname</th><th>Captain Name</th><th>Home Ground</th></tr>";
+                echo "<table border='1' style='width: 50%; border-collapse: collapse;'>";
+                echo "<tr style='background-color: #f2f2f2;'><th>Team Logo</th><th>Team Name</th><th>Captain Name</th><th>Home Ground</th></tr>";
+                
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
-                    echo "<td>" . $row["captainname"] . "</td>";
-                    echo "<td>" . $row["home_ground"] . "</td>";
+                    $img = $row["image"];
+                    $teamId = $row["team_id"];
+                    $imagePath = "images/" . $img; 
+                    echo "<td style='padding: 5px; text-align: center;'><img src=" . $imagePath . " alt='Team Logo' style='width: 80px; height: 80px;'></td>";
+                    echo "<td style='padding: 5px; text-align: center;'><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
+                    echo "<td style='padding: 5px; text-align: center;'>" . $row["captainname"] . "</td>";
+                    echo "<td style='padding: 5px; text-align: center;'>" . $row["home_ground"] . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
             } else {
                 echo "<p>No teams found</p>";
             }
+
         } else {
             
-            $sql = "SELECT `team_id`, `teamname`, `captainname`, `home_ground` FROM team";
+            $sql = "SELECT `team_id`, `teamname`, `captainname`, `home_ground`, `image` FROM team ";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo "<table border='1'>";
-                echo "<tr><th>Teamname</th><th>Captain Name</th><th>Home Ground</th></tr>";
+                echo "<table border='1' style='width: 100%; border-collapse: collapse;'>";
+                echo "<tr style='background-color: #f2f2f2;'>";//</tr>;//<th>Team Logo</th><th>Team Name</th><th>Captain Name</th><th>Home Ground</th></tr>";
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
-                    echo "<td>" . $row["captainname"] . "</td>";
-                    echo "<td>" . $row["home_ground"] . "</td>";
-                    echo "</tr>";
+                    //echo "<tr>";
+                    $img = $row["image"];
+                    //$teamId = $row["team_id"];
+                    $teamname = $row["teamname"];
+                    $imagePath = "images/" . $img; 
+                    echo "<td style='padding: 5px; text-align: center;'><a href='team_details.php?team_id={$row["team_id"]}'>" . "<img src='$imagePath' alt='Team Logo' style='width: 80px; height: 80px;'><br>$teamname" . "</a></td>";
+                    // echo "<td style='padding: 5px; text-align: center;'><a href='team_details.php?team_id={$row["team_id"]}'>" . $row["teamname"] . "</a></td>";
+                    // echo "<td style='padding: 5px; text-align: center;'>" . $row["captainname"] . "</td>";
+                    // echo "<td style='padding: 5px; text-align: center;'>" . $row["home_ground"] . "</td>";
+                    //echo "</tr>";
                 }
+                echo "</tr>";
                 echo "</table>";
             } else {
                 echo "<p>No teams found</p>";
