@@ -1,39 +1,47 @@
 body {
-    background: #eee;
-    font-family: Arial, sans-serif;
+    background: #f4f4f4; /* Light gray background */
+    font-family: 'Arial', sans-serif;
 }
 
 #frm {
-    border: 1px solid gray;
-    width: 25%;
-    border-radius: 2px;
-    margin: 120px auto;
-    background: white;
-    padding: 50px;
+    border: 1px solid #ddd; /* Light gray border */
+    width: 30%;
+    border-radius: 5px;
+    margin: 50px auto; /* Centered with reduced margin */
+    background: #fff; /* White background */
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow for depth */
     text-align: center;
 }
 
 label {
-    display: inline-block;
-    width: 30%; /* Adjust the width as needed */
+    display: block;
+    width: 100%; /* Full width for labels */
     text-align: left;
     margin: 10px 0;
+    font-weight: bold; /* Bold label text */
 }
 
 input {
-    display: inline-block;
-    width: 65%; /* Adjust the width as needed */
-    padding: 8px;
+    display: block;
+    width: 100%; /* Full width for inputs */
+    padding: 10px;
     box-sizing: border-box;
+    margin-bottom: 20px; /* Increased margin for spacing */
+    border: 1px solid #ccc; /* Light border for inputs */
+    border-radius: 3px;
 }
 
 #btn {
     color: #fff;
     background: #337ab7;
-    padding: 10px;
-    width: 40%;
-    margin: 10px auto;
+    padding: 12px;
+    width: 50%;
+    margin: 20px auto; /* Adjusted margin for button */
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 #btn:hover {
