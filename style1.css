@@ -8,12 +8,14 @@ body {
 .taskbar {
     background-color: #004080; /* Cricket team color */
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elegance */
 }
 
 .taskbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    display: flex; /* Display items in a row */
 }
 
 .taskbar li {
@@ -30,7 +32,7 @@ body {
 }
 
 .taskbar li a:hover {
-    background-color: #0066cc; /* Darker shade on hover */
+    background-color: #005599; /* Slightly darker shade on hover */
     color: #fff;
 }
 
@@ -55,8 +57,7 @@ body {
     border-radius: 8px;
     margin-bottom: 20px;
     text-align: center;
-    width : 200px;
- 
+    width: 200px;
 }
 
 /* Additional styling as needed */
