@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2023 at 12:19 PM
+-- Generation Time: Nov 14, 2023 at 06:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -124,17 +124,23 @@ CREATE TABLE `team` (
   `coach_id` int(25) NOT NULL,
   `teamname` varchar(50) NOT NULL,
   `captainname` varchar(40) NOT NULL,
-  `home_ground` varchar(50) NOT NULL
+  `home_ground` varchar(50) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `team`
 --
 
-INSERT INTO `team` (`team_id`, `coach_id`, `teamname`, `captainname`, `home_ground`) VALUES
-(1, 101, 'Chennai Super Kings (CSK)', 'Mahendra Singh Dhoni', 'Chepauk Stadium'),
-(2, 102, 'Gujarat Titans (GT)', 'Hardik Pandya', 'Narendra Modi Stadium'),
-(3, 103, 'Gujarat Royal Titans (GRT)', 'OMKAR', 'Chepauk Stadium');
+INSERT INTO `team` (`team_id`, `coach_id`, `teamname`, `captainname`, `home_ground`, `image`) VALUES
+(1, 10, 'Chennai Super Kings (CSK)', 'Mahendra Singh Dhoni', 'Chepauk Stadium', 'csk.jpg'),
+(2, 20, 'Gujarat Titans (GT)', 'Hardik Pandya', 'Narendra Modi Stadium', 'gt.jpg\r\n'),
+(3, 30, 'Royal Challengers Bangalore (RCB)', 'Faf du Plessis', 'Chinnaswamy Stadium', 'rcb.jpg'),
+(4, 40, 'Punjab Kings (PK)', 'Shikhar Dhawan', 'Bindra Stadium', 'pk.png'),
+(5, 50, 'Mumbai Indians (MI)', 'Rohit Sharma', 'Wankhede Stadium', 'mi.png'),
+(6, 60, 'Rajasthan Royals (RR)', 'Sanju Samson', 'Sawai Mansingh Stadium', 'rr.png'),
+(7, 70, 'Sunrisers Hyderabad (SRH)', 'Aiden Markram', 'Rajiv Gandhi Intl. Cricket Stadium', 'srh.jpg\r\n'),
+(8, 80, 'Kolkata Knight Riders (KKR)', 'Nitish Rana', 'Eden Gardens', 'kkr.jpg');
 
 -- --------------------------------------------------------
 
