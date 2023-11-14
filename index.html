@@ -1,48 +1,105 @@
-<html>  
+<!DOCTYPE html>
+<html lang="en">
 <head>  
-    <title>PHP login system</title>  
-     
-    <link rel = "stylesheet" type = "text/css" href = "style.css">   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Team Login</title>  
+    <link rel="stylesheet" type="text/css" href="style.css">   
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        #frm {
+            border: 2px solid #004080; /* Cricket team color */
+            width: 30%;
+            border-radius: 10px;
+            margin: 100px auto; /* Centered with reduced margin */
+            background: #fff; /* White background */
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle box shadow for depth */
+        }
+
+        h1 {
+            color: #004080; /* Cricket team color */
+        }
+
+        label {
+            display: block;
+            width: 100%; /* Full width for labels */
+            text-align: left;
+            margin: 10px 0;
+            font-weight: bold; /* Bold label text */
+            color: #004080; /* Cricket team color for label text */
+        }
+
+        input {
+            display: block;
+            width: 100%; /* Full width for inputs */
+            padding: 12px;
+            box-sizing: border-box;
+            margin-bottom: 20px; /* Increased margin for spacing */
+            border: 2px solid #004080; /* Cricket team color for input border */
+            border-radius: 5px;
+            outline: none; /* Remove input focus outline */
+        }
+
+        #btn {
+            color: #fff;
+            background: #004080; /* Cricket team color for button */
+            padding: 15px;
+            width: 50%;
+            margin: 20px auto; /* Adjusted margin for button */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #btn:hover {
+            background: #003366; /* Darker shade on hover */
+        }
+    </style>
 </head>  
 <body>  
-    <div id = "frm">  
+    <div id="frm">  
         <h1>Login</h1>  
-        <form name="f1" action = "authentication.php" onsubmit = "return validation()" method = "POST">  
+        <form name="f1" action="authentication.php" onsubmit="return validation()" method="POST">  
             <p>  
                 <label> UserName: </label>  
-                <input type = "text" id ="user" name  = "user" />  
+                <input type="text" id="user" name="user" placeholder="Enter your username" required />  
             </p>  
             <p>  
                 <label> Password: </label>  
-                <input type = "password" id ="pass" name  = "pass" />  
+                <input type="password" id="pass" name="pass" placeholder="Enter your password" required />  
             </p>  
             <p>     
-                <input type =  "submit" id = "btn" value = "Login" />  
+                <input type="submit" id="btn" value="Login" />  
             </p>  
         </form>  
     </div>  
       
     <script>  
-            function validation()  
-            {  
-                var id=document.f1.user.value;  
-                var ps=document.f1.pass.value;  
-                if(id.length=="" && ps.length=="") {  
-                    alert("User Name and Password fields are empty");  
+        function validation() {  
+            var id = document.f1.user.value;  
+            var ps = document.f1.pass.value;  
+            if (id.length == "" && ps.length == "") {  
+                alert("User Name and Password fields are empty");  
+                return false;  
+            }  
+            else {  
+                if (id.length == "") {  
+                    alert("User Name is empty");  
                     return false;  
-                }  
-                else  
-                {  
-                    if(id.length=="") {  
-                        alert("User Name is empty");  
-                        return false;  
-                    }   
-                    if (ps.length=="") {  
+                }   
+                if (ps.length == "") {  
                     alert("Password field is empty");  
                     return false;  
-                    }  
-                }                             
-            }  
-        </script>  
+                }  
+            }                             
+        }  
+    </script>  
 </body>     
-</html>  
+</html>
