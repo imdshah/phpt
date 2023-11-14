@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2023 at 03:30 PM
+-- Generation Time: Nov 14, 2023 at 12:19 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -42,7 +42,8 @@ CREATE TABLE `coach` (
 
 INSERT INTO `coach` (`coach_id`, `coachname`, `coach_age`, `coach_type`, `team_id`, `experience_in_years`) VALUES
 (101, 'Stephen Fleming', 50, 'Head Coach', 1, 15),
-(102, 'Ashish Nehra', 44, 'Head Coach', 2, 4);
+(102, 'Ashish Nehra', 44, 'Head Coach', 2, 4),
+(103, 'Mark Wood', 28, 'Batting Coach', 2, 4);
 
 -- --------------------------------------------------------
 
@@ -57,6 +58,14 @@ CREATE TABLE `matches` (
   `date` date NOT NULL,
   `ground` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `matches`
+--
+
+INSERT INTO `matches` (`match_id`, `hometeam_id`, `awayteam_id`, `date`, `ground`) VALUES
+(1, 1, 2, '2023-12-01', 'chepuk'),
+(2, 2, 1, '2023-12-04', 'Eden Gardens Stadium');
 
 -- --------------------------------------------------------
 
@@ -74,6 +83,13 @@ CREATE TABLE `players` (
   `team_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `players`
+--
+
+INSERT INTO `players` (`player_id`, `playername`, `age`, `country`, `type`, `style`, `team_id`) VALUES
+(1, 'Jos Buttler', 30, 'England', 'Batter', 'Right-handed attacking', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +105,13 @@ CREATE TABLE `score` (
   `ground` varchar(40) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `score`
+--
+
+INSERT INTO `score` (`match_id`, `won_teamname`, `lost_teamname`, `won_teamscore`, `lost_teamscore`, `ground`, `date`) VALUES
+(1, 'CSK', 'RCB', 234, 200, 'Chepuk', '2023-12-01');
 
 -- --------------------------------------------------------
 
@@ -110,7 +133,8 @@ CREATE TABLE `team` (
 
 INSERT INTO `team` (`team_id`, `coach_id`, `teamname`, `captainname`, `home_ground`) VALUES
 (1, 101, 'Chennai Super Kings (CSK)', 'Mahendra Singh Dhoni', 'Chepauk Stadium'),
-(2, 102, 'Gujarat Titans (GT)', 'Hardik Pandya', 'Narendra Modi Stadium');
+(2, 102, 'Gujarat Titans (GT)', 'Hardik Pandya', 'Narendra Modi Stadium'),
+(3, 103, 'Gujarat Royal Titans (GRT)', 'OMKAR', 'Chepauk Stadium');
 
 -- --------------------------------------------------------
 
@@ -181,13 +205,13 @@ ALTER TABLE `coach`
 -- AUTO_INCREMENT for table `matches`
 --
 ALTER TABLE `matches`
-  MODIFY `match_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `match_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `players`
 --
 ALTER TABLE `players`
-  MODIFY `player_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `player_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
