@@ -105,11 +105,11 @@
         $conn->close();
         ?>
     
-        <div class="manage-teams">
-            <a href="ateam.php">Add Team</a> |
-            <a href="dteam.php">Delete Team</a> |
-            <a href="uteam.php">Update Team</a>
-        </div>
+    <div class="manage-teams">
+    <a class="button" href="ateam.php">Add Team</a>
+    <a class="button" href="dteam.php">Delete Team</a>
+    <a class="button" href="uteam.php">Update Team</a>
+</div>
     </div>
 </body>
 </html>

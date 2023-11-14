@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="ground">Ground:</label>
             <input type="text" id="ground" name="ground" required>
 
-            <p><input type="submit" value="Add Match"></p>
+            <p><input type="submit" value="Add Match "></p>
         </form>
     </div>
 </body>

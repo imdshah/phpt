@@ -94,9 +94,9 @@
         ?>
     
         <div class="manage-teams">
-            <a href="amatch.php">Add Match</a> |
-            <a href="dmatch.php">Delete Match</a> |
-            <a href="umatch.php">Update Match</a>
+        <a class="button" href="amatch.php">Add Match</a> |
+        <a class="button" href="dmatch.php">Delete Match</a> |
+        <a class="button" href="umatch.php">Update Match</a>
         </div>
     </div>
 </body>

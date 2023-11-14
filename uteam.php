@@ -83,7 +83,7 @@ $result = $conn->query($sql);
 
             </p>
 <br>
-            <input type="submit" value="Update Team">
+            <input type="submit" value="Update Team" class="button">
         </form>
         <?php
         if ($j == 1) {

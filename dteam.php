@@ -57,7 +57,7 @@ $result = $conn->query($sql);
             <label for="teamname">Search and Delete Team by Name:</label>
             <input type="text" id="teamname" name="teamname" required>
 
-            <input type="submit" value="Delete Team">
+            <input type="submit" value="Delete Team" class="button">
         </form>
 
         <?php

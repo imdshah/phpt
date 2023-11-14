@@ -86,7 +86,7 @@ $result = $conn->query($sql);
             <input type="file" id="image" name="image" accept="image/*">
 </p>
 <br>
-            <input type="submit" value="Add Team">
+            <input type="submit" value="Add Team" class="button">
         </form>
 
         <?php
