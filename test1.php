@@ -12,7 +12,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
+            background: linear-gradient(to bottom, #3399ff 0%, #ff99ff 100%);
         }
 
         .taskbar {
@@ -57,6 +57,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             text-align: center;
             margin-top: 20px;
+            background: linear-gradient(to bottom, #3399ff 0%, #ff99ff 100%);
         }
 
         h2 {
@@ -98,7 +99,7 @@
         }
 
         .team-card {
-            border: 1px solid #ccc;
+            /* border: 1px solid #ccc;
             margin: 10px;
             padding: 10px;
             text-align: center;

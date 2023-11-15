@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #333;
         }
 
-        input {
+        input, select {
             padding: 10px;
             width: 100%;
             box-sizing: border-box;
@@ -162,7 +162,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="text" id="coach_age" name="coach_age" required>
 
             <label for="coach_type">Coach Type:</label>
-            <input type="text" id="coach_type" name="coach_type" required>
+            <select id="coach_type" name="coach_type" required>
+                <option value="Head Coach">Head Coach</option>
+                <option value="Batting Coach">Batting Coach</option>
+                <option value="Bowling Coach">Bowling Coach</option>
+            </select>
 
             <label for="team_id">Team ID:</label>
             <input type="text" id="team_id" name="team_id" required>
@@ -175,6 +179,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
+
 
 <?php
 $conn->close();
