@@ -7,7 +7,7 @@ $db_name = "sports";
 $conn = mysqli_connect($host, $user, $password, $db_name);
 
 if(mysqli_connect_errno()) {
-    die("Failed to connect with MySQL: ". mysqli_connect_error());
+    die("Failed to connect with MySQL: " . mysqli_connect_error());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -96,25 +96,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         form {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            justify-content: center;
             align-items: center;
+            text-align: left;
         }
 
         label {
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 16px;
+            margin-bottom: 5px;
             color: #333;
         }
 
         input {
-            padding: 12px;
-            width: 300px;
+            padding: 10px;
+            width: 100%;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            margin-bottom: 20px;
         }
 
         input[type="submit"] {
@@ -122,11 +124,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #fff;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px;
             padding: 12px;
             border: none;
             border-radius: 5px;
             font-size: 18px;
-            width: 300px;
         }
 
         input[type="submit"]:hover {
@@ -160,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="country">Country:</label>
             <input type="text" id="country" name="country" required>
-            
+
             <label for="type">Type:</label>
             <input type="text" id="type" name="type" required>
 
