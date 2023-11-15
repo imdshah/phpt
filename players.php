@@ -92,8 +92,8 @@
         ?>
     
         <div class="manage-teams">
-        <a class="button" href="aplayer.php">Add Player</a> |
-        <a class="button" href="dplayer.php">Delete Player</a> |
+        <a class="button" href="aplayer.php">Add Player</a> 
+        <a class="button" href="dplayer.php">Delete Player</a> 
         <a class="button" href="uplayer.php">Update Player</a>
         </div>
     </div>
