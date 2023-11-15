@@ -38,11 +38,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Add Coach</title>
     <link rel="stylesheet" type="text/css" href="style1.css">
     <style>
+        /* Add your custom styles here */
+        /* For example: */
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
         }
 
         .taskbar {
@@ -96,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         form {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             justify-content: center;
             align-items: center;
@@ -118,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 16px;
         }
 
-        input[type="submit"] {
+        .button {
             background-color: #004080;
             color: #fff;
             cursor: pointer;
@@ -130,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 18px;
         }
 
-        input[type="submit"]:hover {
+        .button:hover {
             background-color: #005599;
         }
     </style>
@@ -158,7 +160,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="coach_age">Coach Age:</label>
             <input type="text" id="coach_age" name="coach_age" required>
-            <p>
+
             <label for="coach_type">Coach Type:</label>
             <input type="text" id="coach_type" name="coach_type" required>
 
@@ -167,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="experience_in_years">Experience (in years):</label>
             <input type="text" id="experience_in_years" name="experience_in_years" required>
-            </p>
+
             <input type="submit" value="Add Coach" class="button">
         </form>
     </div>
