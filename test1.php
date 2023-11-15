@@ -102,7 +102,7 @@
             margin: 10px;
             padding: 10px;
             text-align: center;
-            width: 150px; /* Increase card width */
+            width: calc(25% - 20px); /* Adjusted card width */
             transition: box-shadow 0.3s; /* Add transition for visual effect */
         }
 
