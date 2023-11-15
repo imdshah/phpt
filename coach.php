@@ -221,9 +221,9 @@
         ?>
 
         <div class="manage-teams">
-            <a class="button" href="acoach.php">Add Coach</a> |
-            <a class="button" href="dcoach.php">Delete Coach</a> |
-            <a class="button" href="ucoach.php">Update Coach</a>
+        <a class="button" href="acoach.php">Add Coach</a> |
+        <a class="button" href="dcoach.php">Delete Coach</a> |
+        <a class="button" href="ucoach.php">Update Coach</a>
         </div>
     </div>
 </body>
