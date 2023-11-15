@@ -38,6 +38,105 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Score</title>
     <link rel="stylesheet" type="text/css" href="style1.css">
+    <style>
+        /* Add your custom styles here */
+        /* For example: */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .taskbar {
+            background-color: #004080;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .taskbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .taskbar li {
+            float: left;
+        }
+
+        .taskbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .taskbar li a:hover {
+            background-color: #005599;
+            color: #fff;
+        }
+
+        .taskbar li.logout {
+            margin-left: auto;
+        }
+
+        .content {
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #004080;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            text-align: left;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button {
+            background-color: #004080;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background-color: #005599;
+        }
+    </style>
 </head>
 <body>
     <div class="taskbar">
@@ -63,11 +162,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="won_teamscore">Winning Team Score:</label>
             <input type="text" id="won_teamscore" name="won_teamscore" required>
-<p>
+
             <label for="lost_teamname">Losing Team Name:</label>
             <input type="text" id="lost_teamname" name="lost_teamname" required>
-
-            
 
             <label for="lost_teamscore">Losing Team Score:</label>
             <input type="text" id="lost_teamscore" name="lost_teamscore" required>
@@ -77,12 +174,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="date">Date:</label>
             <input type="text" id="date" name="date" required>
-</p>
-            <input type="submit" value="Add Score">
+
+            <input type="submit" value="Add Score" class="button">
         </form>
     </div>
 </body>
 </html>
+
+
 
 <?php
 $conn->close();
