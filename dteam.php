@@ -10,6 +10,8 @@ if(mysqli_connect_errno()) {
     die("Failed to connect with MySQL: ". mysqli_connect_error());
 }
 
+$j = 0;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Form submission, process the data and delete from the database
     $teamname = mysqli_real_escape_string($conn, $_POST['teamname']);
@@ -18,12 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "DELETE FROM team WHERE teamname LIKE '%$teamname%'";
 
     if ($conn->query($sql) === TRUE) {
-        $deletedRows = $conn->affected_rows;
-        echo "$deletedRows team(s) deleted successfully";
+        $j = 1;
+        echo "Team(s) deleted successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
+$sql = "SELECT * FROM team";
+$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="taskbar">
         <ul>
             <li><a href="home.html">Home</a></li>
-            <li><a href="team.php">Team</a></li>
+            <li><a href="test1.php">Team</a></li>
             <li><a href="coach.php">Coach</a></li>
             <li><a href="matches.php">Matches</a></li>
             <li><a href="players.php">Players</a></li>
@@ -52,8 +57,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="teamname">Search and Delete Team by Name:</label>
             <input type="text" id="teamname" name="teamname" required>
 
-            <input type="submit" value="Delete Team">
+            <input type="submit" value="Delete Team" class="button">
         </form>
+
+        <?php
+        if ($j > 0) {
+            // Display teams after successfully deleting a team
+            echo "<h2>Team List</h2>";
+            if ($result->num_rows > 0) {
+                echo "<table border='1' style='width: 100%; border-collapse: collapse;'>";
+                echo "<tr style='background-color: #f2f2f2;'><th>Team ID</th><th>Coach ID</th><th>Team Name</th><th>Captain Name</th><th>Home Ground</th><th>Team Logo</th></tr>";
+
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td style='text-align: center;'>" . $row["team_id"] . "</td>";
+                    echo "<td style='text-align: center;'>" . $row["coach_id"] . "</td>";
+                    echo "<td style='text-align: center;'>" . $row["teamname"] . "</td>";
+                    echo "<td style='text-align: center;'>" . $row["captainname"] . "</td>";
+                    echo "<td style='text-align: center;'>". $row["home_ground"] . "</td>";
+                    echo "<td style='text-align: center;'><img src='images/" . $row["image"] . "' alt='Team Logo' style='width: 80px; height: 80px;'></td>";
+                    echo "</tr>";
+                }
+
+                echo "</table>";
+            } else {
+                echo "<p>No teams found</p>";
+            }
+        }
+        ?>
+
     </div>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <div class="taskbar">
         <ul>
             <li><a href="home.html">Home</a></li>
-            <li><a href="team.php">Team</a></li>
+            <li><a href="test1.php">Team</a></li>
             <li><a href="coach.php">Coach</a></li>
             <li><a href="matches.php">Matches</a></li>
             <li><a href="players.php">Players</a></li>
@@ -19,15 +19,16 @@
     </div>
 
     <div class="content">
-        <h2>Team Search</h2>
-        <form method="post" action="">
-            <label for="teamName">Search by Team Name:</label>
-            <input type="text" id="teamName" name="teamName" placeholder="Enter team name">
-            <input type="submit" value="Search">
+    <h2>Team Search</h2>
+    <form method="post" action="">
+        <label for="teamName" style="font-size: 18px;">Search by Team Name:</label>
+        <input type="text" id="teamName" name="teamName" placeholder="Enter team name" style="font-size: 16px;">
+        <input type="submit" value="Search" style="font-size: 16px;">
         </form>
     
-        <!-- <h2>Team List</h2> -->
         <br>
+        <h2>Team List</h2>
+        <br><br>
         <?php
         $host = "localhost";
         $user = "root";
@@ -104,11 +105,11 @@
         $conn->close();
         ?>
     
-        <div class="manage-teams">
-            <a href="ateam.php">Add Team</a> |
-            <a href="dteam.php">Delete Team</a> |
-            <a href="uteam.php">Update Team</a>
-        </div>
+    <div class="manage-teams">
+    <a class="button" href="ateam.php">Add Team</a>
+    <a class="button" href="dteam.php">Delete Team</a>
+    <a class="button" href="uteam.php">Update Team</a>
+</div>
     </div>
 </body>
 </html>

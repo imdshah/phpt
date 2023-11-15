@@ -59,9 +59,9 @@
         ?>
     
         <div class="manage-scores">
-                <a href="ascore.php">Add Score</a> |
-                <a href="dscore.php">Delete Score</a> |
-                <a href="uscore.php">Update Score</a>
+        <a class="button" href="ascore.php">Add Score</a> |
+        <a class="button" href="dscore.php">Delete Score</a> |
+        <a class="button" href="uscore.php">Update Score</a>
         </div>
     </div>
 </body>
