@@ -1,35 +1,3 @@
-<?php
-$host = "localhost";
-$user = "root";
-$password = '';
-$db_name = "sports";
-
-$conn = mysqli_connect($host, $user, $password, $db_name);
-
-if(mysqli_connect_errno()) {
-    die("Failed to connect with MySQL: ". mysqli_connect_error());
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $coach_id = $_POST['coach_id'];
-    $coachname = $_POST['coachname'];
-    $coach_age = $_POST['coach_age'];
-    $coach_type = $_POST['coach_type'];
-    $team_id = $_POST['team_id'];
-    $experience_in_years = $_POST['experience_in_years'];
-
-    
-    $sql = "INSERT INTO coach (coach_id, coachname, coach_age, coach_type, team_id, experience_in_years) VALUES ('$coach_id', '$coachname', '$coach_age', '$coach_type', '$team_id', '$experience_in_years')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Coach added successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,10 +149,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <?php
-$conn->close();
-?>
+$host = "localhost";
+$user = "root";
+$password = '';
+$db_name = "sports";
 
+$conn = mysqli_connect($host, $user, $password, $db_name);
 
-<?php
+if(mysqli_connect_errno()) {
+    die("Failed to connect with MySQL: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $coach_id = $_POST['coach_id'];
+    $coachname = $_POST['coachname'];
+    $coach_age = $_POST['coach_age'];
+    
+    // Get the selected Coach Type
+    $coach_type = $_POST['coach_type'];
+    
+    $team_id = $_POST['team_id'];
+    $experience_in_years = $_POST['experience_in_years'];
+
+    // Modify the SQL query based on the selected Coach Type
+    $sql = "INSERT INTO coach (coach_id, coachname, coach_age, coach_type, team_id, experience_in_years) 
+            VALUES ('$coach_id', '$coachname', '$coach_age', '$coach_type', '$team_id', '$experience_in_years')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Coach added successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Close the database connection
 $conn->close();
 ?>

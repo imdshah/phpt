@@ -46,30 +46,29 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            echo "<h2>Team Details</h2>";
-
+            $row = $result->fetch_assoc();
+            echo "<h2>" . $row["teamname"] . " Team Details</h2>";
+        
             // Display Players Table
             echo "<h3>Players</h3>";
             echo "<table border='1' style='width: 100%; border-collapse: collapse;'>";
             echo "<tr style='background-color: #f2f2f2;'>
                     <th>Player ID</th>
                     <th>Player Name</th>
-                    <th>Player Age</th>
-                    <th>Country</th>
                     <th>Player Type</th>
                     <th>Player Style</th>
-                    </tr>";
-
-            while ($row = $result->fetch_assoc()) {
+                  </tr>";
+        
+            // Output data of each row
+            do {
                 echo "<tr>";
                 echo "<td style='padding: 5px; text-align: center;'>" . $row["player_id"] . "</td>";
                 echo "<td style='padding: 5px; text-align: center;'>" . $row["playername"] . "</td>";
-                echo "<td style='padding: 5px; text-align: center;'>" . $row["age"] . "</td>";
-                echo "<td style='padding: 5px; text-align: center;'>" . $row["country"] . "</td>";
                 echo "<td style='padding: 5px; text-align: center;'>" . $row["type"] . "</td>";
                 echo "<td style='padding: 5px; text-align: center;'>" . $row["style"] . "</td>";
                 echo "</tr>";
-            }
+            } while ($row = $result->fetch_assoc());
+        
             echo "</table>";
 
             // Display Coaches Table
@@ -78,9 +77,9 @@
             echo "<tr style='background-color: #f2f2f2;'>
                     <th>Coach ID</th>
                     <th>Coach Name</th>
-                    <th>Coach Age</th>
+                    
                     <th>Coach Type</th>
-                    <th>Experience (years)</th>
+                    
                     </tr>";
 
             $result->data_seek(0); // Reset result pointer to fetch data again
@@ -88,9 +87,9 @@
                 echo "<tr>";
                 echo "<td style='padding: 5px; text-align: center;'>" . $row["coach_id"] . "</td>";
                 echo "<td style='padding: 5px; text-align: center;'>" . $row["coachname"] . "</td>";
-                echo "<td style='padding: 5px; text-align: center;'>" . $row["coach_age"] . "</td>";
+                
                 echo "<td style='padding: 5px; text-align: center;'>" . $row["coach_type"] . "</td>";
-                echo "<td style='padding: 5px; text-align: center;'>" . $row["experience_in_years"] . "</td>";
+                
                 echo "</tr>";
             }
             echo "</table>";
