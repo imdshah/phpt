@@ -36,14 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Score</title>
+    <title>Add Coach</title>
     <link rel="stylesheet" type="text/css" href="style1.css">
     <style>
+        /* Add your custom styles here */
+        /* For example: */
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
         }
 
         .taskbar {
@@ -97,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         form {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             justify-content: center;
             align-items: center;
@@ -119,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 16px;
         }
 
-        input[type="submit"] {
+        .button {
             background-color: #004080;
             color: #fff;
             cursor: pointer;
@@ -131,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 18px;
         }
 
-        input[type="submit"]:hover {
+        .button:hover {
             background-color: #005599;
         }
     </style>
@@ -144,40 +146,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="coach.php">Coach</a></li>
             <li><a href="matches.php">Matches</a></li>
             <li><a href="players.php">Players</a></li>
-            <li><a href="score.php">Scores</a></li>
             <li style="float: right;"><a href="logout.php">Logout</a></li>
         </ul>
     </div>
 
     <div class="content">
-        <h2>Add Score</h2>
+        <h2>Add Coach</h2>
         <form method="post" action="">
-            <label for="match_id">Match ID:</label>
-            <input type="text" id="match_id" name="match_id" required>
+            <label for="coach_id">Coach ID:</label>
+            <input type="text" id="coach_id" name="coach_id" required>
 
-            <label for="won_teamname">Winning Team Name:</label>
-            <input type="text" id="won_teamname" name="won_teamname" required>
+            <label for="coachname">Coach Name:</label>
+            <input type="text" id="coachname" name="coachname" required>
 
-            <label for="won_teamscore">Winning Team Score:</label>
-            <input type="text" id="won_teamscore" name="won_teamscore" required>
-            <p>
-            <label for="lost_teamname">Losing Team Name:</label>
-            <input type="text" id="lost_teamname" name="lost_teamname" required>
+            <label for="coach_age">Coach Age:</label>
+            <input type="text" id="coach_age" name="coach_age" required>
 
-            <label for="lost_teamscore">Losing Team Score:</label>
-            <input type="text" id="lost_teamscore" name="lost_teamscore" required>
+            <label for="coach_type">Coach Type:</label>
+            <input type="text" id="coach_type" name="coach_type" required>
 
-            <label for="ground">Ground:</label>
-            <input type="text" id="ground" name="ground" required>
+            <label for="team_id">Team ID:</label>
+            <input type="text" id="team_id" name="team_id" required>
 
-            <label for="date">Date:</label>
-            <input type="text" id="date" name="date" required>
-            </p>
-            <input type="submit" value="Add Score">
+            <label for="experience_in_years">Experience (in years):</label>
+            <input type="text" id="experience_in_years" name="experience_in_years" required>
+
+            <input type="submit" value="Add Coach" class="button">
         </form>
     </div>
 </body>
 </html>
+
 
 <?php
 $conn->close();
