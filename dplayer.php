@@ -3,28 +3,43 @@ $host = "localhost";
 $user = "root";
 $password = '';
 $db_name = "sports";
-
+$j = 0;
 $conn = mysqli_connect($host, $user, $password, $db_name);
 
-if(mysqli_connect_errno()) {
-    die("Failed to connect with MySQL: ". mysqli_connect_error());
+if (mysqli_connect_errno()) {
+    die("Failed to connect with MySQL: " . mysqli_connect_error());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Form submission, process the data and delete from the database
-    $player_id = mysqli_real_escape_string($conn, $_POST['player_id']);
+    $playername = mysqli_real_escape_string($conn, $_POST['playername']);
 
-    // Perform the SQL query to delete the player from the 'players' table
-    $sql = "DELETE FROM players WHERE player_id LIKE '%$player_id%'";
+    // Retrieve team_id for the deleted player
+    $teamIdQuery = "SELECT team_id FROM players WHERE playername LIKE '%$playername%' LIMIT 1";
+    $teamIdResult = $conn->query($teamIdQuery);
 
-    if ($conn->query($sql) === TRUE) {
-        $deletedRows = $conn->affected_rows;
-        echo "$deletedRows player(s) deleted successfully";
+    if ($teamIdResult->num_rows > 0) {
+        $teamIdRow = $teamIdResult->fetch_assoc();
+        $team_id = $teamIdRow['team_id'];
+
+        // Perform the SQL query to delete the player from the 'players' table
+        $sql = "DELETE FROM players WHERE playername LIKE '%$playername%'";
+
+        if ($conn->query($sql) === TRUE) {
+            $deletedRows = $conn->affected_rows;
+            echo "$deletedRows player(s) deleted successfully";
+            $j = 1;
+            // Add more player details as needed
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Player not found";
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,6 +142,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         input[type="submit"]:hover {
             background-color: #005599;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -144,11 +178,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="content">
         <h2>Delete Player</h2>
         <form method="post" action="">
-            <label for="player_id">Search and Delete Player by ID:</label>
-            <input type="text" id="player_id" name="player_id" required>
+            <label for="playername">Search and Delete Player by Player Name:</label>
+            <input type="text" id="playername" name="playername" required>
 
             <input type="submit" value="Delete Player">
         </form>
+
+        <?php
+        if ($j > 0) {
+            // Display Player Details
+            echo "<h3>Player Details</h3>";
+            $playerDetailsQuery = "SELECT p.player_id, p.playername, p.age, p.country, p.type, p.style, p.team_id, t.team_id, t.teamname FROM players p INNER JOIN team t ON t.team_id = p.team_id  WHERE p.team_id = '$team_id'";
+            $playerResult = $conn->query($playerDetailsQuery);
+
+            if ($playerResult->num_rows > 0) {
+                echo "<table>";
+                echo "<tr>
+                        <th>Player ID</th>
+                        <th>Player Name</th>
+                        <th>Age</th>
+                        <th>Country</th>
+                        <th>Type</th>
+                        <th>Style</th>
+                      </tr>";
+                while ($row = $playerResult->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["player_id"] . "</td>";
+                    echo "<td>" . $row["playername"] . "</td>";
+                    echo "<td>" . $row["age"] . "</td>";
+                    echo "<td>" . $row["country"] . "</td>";
+                    echo "<td>" . $row["type"] . "</td>";
+                    echo "<td>" . $row["style"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p>No player details found</p>";
+            }
+        }
+        ?>
     </div>
 </body>
 </html>
