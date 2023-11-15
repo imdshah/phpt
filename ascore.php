@@ -39,11 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Add Score</title>
     <link rel="stylesheet" type="text/css" href="style1.css">
     <style>
+        /* Add your custom styles here */
+        /* For example: */
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
         }
 
         .taskbar {
@@ -97,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         form {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             justify-content: center;
             align-items: center;
@@ -119,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 16px;
         }
 
-        input[type="submit"] {
+        .button {
             background-color: #004080;
             color: #fff;
             cursor: pointer;
@@ -131,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 18px;
         }
 
-        input[type="submit"]:hover {
+        .button:hover {
             background-color: #005599;
         }
     </style>
@@ -160,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="won_teamscore">Winning Team Score:</label>
             <input type="text" id="won_teamscore" name="won_teamscore" required>
-            <p>
+
             <label for="lost_teamname">Losing Team Name:</label>
             <input type="text" id="lost_teamname" name="lost_teamname" required>
 
@@ -172,12 +174,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="date">Date:</label>
             <input type="text" id="date" name="date" required>
-            </p>
-            <input type="submit" value="Add Score">
+
+            <input type="submit" value="Add Score" class="button">
         </form>
     </div>
 </body>
 </html>
+
+
 
 <?php
 $conn->close();
