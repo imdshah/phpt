@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,95 @@
     <div class="content">
         <h2>Welcome to the Cricket Team Management Home Page</h2>
         <p>This is the Home page.</p>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Team Management</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .taskbar {
+            background-color: #004080;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .taskbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .taskbar li {
+            float: left;
+        }
+
+        .taskbar li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .taskbar li a:hover {
+            background-color: #005599;
+            color: #fff;
+        }
+
+        .taskbar li.logout {
+            margin-left: auto;
+        }
+
+        .content {
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #004080;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="taskbar">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="test1.php">Team</a></li>
+            <li><a href="coach.php">Coach</a></li>
+            <li><a href="matches.php">Matches</a></li>
+            <li><a href="players.php">Players</a></li>
+            <li class="logout"><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Welcome to the Cricket Team Management Home Page</h2>
+        <p>This is the central hub for managing your cricket team. Explore the menu above to access different sections, including the team details, coaching staff, match information, and player profiles.</p>
     </div>
 </body>
 </html>
