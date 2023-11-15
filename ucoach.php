@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="experience_in_years">Experience (in years):</label>
             <input type="text" id="experience_in_years" name="experience_in_years" required>
             </p>
-            <input type="submit" value="Update Coach">
+            <input type="submit" value="Update Coach" class="button">
         </form>
     </div>
 </body>

@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="coachname">Search and Delete Coach by Name:</label>
             <input type="text" id="coachname" name="coachname" required>
 
-            <input type="submit" value="Delete Coach">
+            <input type="submit" value="Delete Coach" class="button">
         </form>
     </div>
 </body>
