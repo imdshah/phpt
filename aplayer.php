@@ -96,21 +96,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         form {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            justify-content: center;
             align-items: center;
+            text-align: left;
         }
 
         label {
-            margin-top: 10px;
-            font-size: 18px;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #333;
         }
 
         input {
-            padding: 8px;
-            margin-top: 5px;
+            padding: 10px;
             width: 100%;
             box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         input[type="submit"] {
@@ -119,6 +125,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
             margin-top: 20px;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
         }
 
         input[type="submit"]:hover {
