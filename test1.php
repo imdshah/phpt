@@ -6,6 +6,8 @@
     <title>Team Page</title>
     <link rel="stylesheet" type="text/css" href="style1.css">
     <style>
+        /* Add your custom styles here */
+        /* For example: */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -100,12 +102,18 @@
             margin: 10px;
             padding: 10px;
             text-align: center;
-            width: 100px;
+            width: 150px; /* Increase card width */
+            transition: box-shadow 0.3s; /* Add transition for visual effect */
         }
 
         .team-card img {
             width: 80px;
             height: 80px;
+            border-radius: 50%;
+        }
+
+        .team-card:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
         }
 
         .manage-teams {
