@@ -192,12 +192,12 @@
                 echo "<p>No players found</p>";
             }
         } else {
-            $sql = "SELECT * FROM players";
+            $sql = "SELECT player_id,playername, age, country, type, style, teamname FROM players p , team t where p.team_id = t.team_id";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 echo "<table class='players-table'>";
-                echo "<tr><th>Player ID</th><th>Player Name</th><th>Age</th><th>Country</th><th>Type</th><th>Style</th><th>Team ID</th></tr>";
+                echo "<tr><th>Player ID</th><th>Player Name</th><th>Age</th><th>Country</th><th>Type</th><th>Style</th><th>Team Name</th></tr>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["player_id"] . "</a></td>";
@@ -206,7 +206,7 @@
                     echo "<td>" . $row["country"] . "</td>";
                     echo "<td>" . $row["type"] . "</td>";
                     echo "<td>" . $row["style"] . "</td>";
-                    echo "<td>" . $row["team_id"] . "</td>";
+                    echo "<td>" . $row["teamname"] . "</td>";
                     echo "</tr>";
                 }
                 echo "</table>";
