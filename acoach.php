@@ -1,3 +1,44 @@
+<?php
+$host = "localhost";
+$user = "root";
+$password = '';
+$db_name = "sports";
+$j = 0;
+
+$conn = mysqli_connect($host, $user, $password, $db_name);
+
+if(mysqli_connect_errno()) {
+    die("Failed to connect with MySQL: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $coach_id = $_POST['coach_id'];
+    $coachname = $_POST['coachname'];
+    $coach_age = $_POST['coach_age'];
+    
+    // Get the selected Coach Type
+    $coach_type = $_POST['coach_type'];
+    
+    $team_id = $_POST['team_id'];
+    $experience_in_years = $_POST['experience_in_years'];
+
+    // Modify the SQL query based on the selected Coach Type
+    $sql = "INSERT INTO coach (coach_id, coachname, coach_age, coach_type, team_id, experience_in_years) 
+            VALUES ('$coach_id', '$coachname', '$coach_age', '$coach_type', '$team_id', '$experience_in_years')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Coach added successfully";
+        $j = 1;
+        
+        
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,9 +172,11 @@
 
             <label for="coach_type">Coach Type:</label>
             <select id="coach_type" name="coach_type" required>
+                <option value=" "> </option>
                 <option value="Head Coach">Head Coach</option>
                 <option value="Batting Coach">Batting Coach</option>
                 <option value="Bowling Coach">Bowling Coach</option>
+                <option value="Fielding Coach">Fielding Coach</option>
             </select>
 
             <label for="team_id">Team ID:</label>
@@ -144,45 +187,52 @@
 
             <input type="submit" value="Add Coach" class="button">
         </form>
-    </div>
+    
+
+        <?php
+        if ($j == 1) {
+        echo "<h3>Coach Details</h3>";
+$coachDetailsQuery = "SELECT * FROM coach ";
+$coachResult = $conn->query($coachDetailsQuery);
+
+if ($coachResult->num_rows > 0) {
+    echo "<table border='1'>";
+    echo "<tr>
+            <th>Coach ID</th>
+            <th>Coach Name</th>
+            <th>Coach Age</th>
+            <th>Coach Type</th>
+            <th>Team ID</th>
+            <th>Experience (in years)</th>
+          </tr>";
+
+    while ($row = $coachResult->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["coach_id"] . "</td>";
+        echo "<td>" . $row["coachname"] . "</td>";
+        echo "<td>" . $row["coach_age"] . "</td>";
+        echo "<td>" . $row["coach_type"] . "</td>";
+        echo "<td>" . $row["team_id"] . "</td>";
+        echo "<td>" . $row["experience_in_years"] . "</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+} else {
+    echo "<p>No coach details found</p>";
+}
+        
+
+     
+}
+
+
+?>
+
+</div>
 </body>
 </html>
 
 <?php
-$host = "localhost";
-$user = "root";
-$password = '';
-$db_name = "sports";
-
-$conn = mysqli_connect($host, $user, $password, $db_name);
-
-if(mysqli_connect_errno()) {
-    die("Failed to connect with MySQL: " . mysqli_connect_error());
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    $coach_id = $_POST['coach_id'];
-    $coachname = $_POST['coachname'];
-    $coach_age = $_POST['coach_age'];
-    
-    // Get the selected Coach Type
-    $coach_type = $_POST['coach_type'];
-    
-    $team_id = $_POST['team_id'];
-    $experience_in_years = $_POST['experience_in_years'];
-
-    // Modify the SQL query based on the selected Coach Type
-    $sql = "INSERT INTO coach (coach_id, coachname, coach_age, coach_type, team_id, experience_in_years) 
-            VALUES ('$coach_id', '$coachname', '$coach_age', '$coach_type', '$team_id', '$experience_in_years')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Coach added successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
-
-// Close the database connection
 $conn->close();
 ?>

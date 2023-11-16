@@ -11,6 +11,8 @@ if(mysqli_connect_errno()) {
     die("Failed to connect with MySQL: ". mysqli_connect_error());
 }
 
+$teamDetails = null;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Form submission, process the data and update the database
     $team_id = $_POST['team_id'];
@@ -34,6 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+} elseif (isset($_GET['teamname'])) {
+    // Fetch team details when a teamname is provided
+    $teamname = $_GET['teamname'];
+    $sql = "SELECT * FROM team WHERE teamname LIKE '%$teamname%'";
+    $result = $conn->query($sql);
+    $teamDetails = $result->fetch_assoc();
 }
 
 $sql = "SELECT * FROM team";
@@ -167,12 +175,12 @@ $result = $conn->query($sql);
             width: 80px;
             height: 80px;
         }
-    </style>
+        </style>
 </head>
 <body>
     <div class="taskbar">
         <ul>
-            <li><a href="home.html">Home</a></li>
+        <li><a href="home.html">Home</a></li>
             <li><a href="test1.php">Team</a></li>
             <li><a href="coach.php">Coach</a></li>
             <li><a href="matches.php">Matches</a></li>
@@ -183,32 +191,41 @@ $result = $conn->query($sql);
 
     <div class="content">
         <h2>Update Team</h2>
-        <form method="post" action="" enctype="multipart/form-data">
-            <label for="team_id">Team ID:</label>
-            <input type="text" id="team_id" name="team_id" required>
-
-            <label for="coach_id">Coach ID:</label>
-            <input type="text" id="coach_id" name="coach_id" required>
-
-            <label for="teamname">Team Name:</label>
-            <input type="text" id="teamname" name="teamname" required>
-
-            <label for="captainname">Captain Name:</label>
-            <input type="text" id="captainname" name="captainname" required>
-
-            <label for="home_ground">Home Ground:</label>
-            <input type="text" id="home_ground" name="home_ground" required>
-
-            <label for="image">Team Logo (Image):</label>
-            <input type="file" id="image" name="image" accept="image/*">
-
-            <input type="submit" value="Update Team" class="button">
+        <form method="get" action="">
+            <label for="teamname_search">Search Team By Team Name:</label>
+            <input type="text" id="teamname_search" name="teamname" required>
+            <input type="submit" value="Search Team">
         </form>
 
         <?php
+        if ($teamDetails) {
+            ?>
+            <form method="post" action="" enctype="multipart/form-data">
+                <label for="team_id">Team ID:</label>
+                <input type="text" id="team_id" name="team_id" value="<?php echo $teamDetails['team_id']; ?>" readonly required>
+
+                <label for="coach_id">Coach ID:</label>
+                <input type="text" id="coach_id" name="coach_id" value="<?php echo $teamDetails['coach_id']; ?>" required>
+
+                <label for="teamname">Team Name:</label>
+                <input type="text" id="teamname" name="teamname" value="<?php echo $teamDetails['teamname']; ?>" required>
+
+                <label for="captainname">Captain Name:</label>
+                <input type="text" id="captainname" name="captainname" value="<?php echo $teamDetails['captainname']; ?>" required>
+
+                <label for="home_ground">Home Ground:</label>
+                <input type="text" id="home_ground" name="home_ground" value="<?php echo $teamDetails['home_ground']; ?>" required>
+
+                <label for="image">Team Logo (Image):</label>
+                <input type="file" id="image" name="image" accept="image/*">
+
+                <input type="submit" value="Update Team" class="button">
+            </form>
+        <?php
+        }
         if ($j == 1) {
             // Display teams after updating a team
-            echo "<h2>Team List</h2>";
+            echo "<h2>Team Details</h2>";
             if ($result->num_rows > 0) {
                 echo "<table border='1' style='width: 100%; border-collapse: collapse;'>";
                 echo "<tr style='background-color: #f2f2f2;'><th>Team ID</th><th>Coach ID</th><th>Team Name</th><th>Captain Name</th><th>Home Ground</th><th>Team Logo</th></tr>";
