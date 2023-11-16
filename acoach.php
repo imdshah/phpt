@@ -144,6 +144,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .button:hover {
             background-color: #005599;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #004080;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -187,51 +211,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <input type="submit" value="Add Coach" class="button">
         </form>
-    
 
         <?php
         if ($j == 1) {
-        echo "<h3>Coach Details</h3>";
-$coachDetailsQuery = "SELECT * FROM coach ";
-$coachResult = $conn->query($coachDetailsQuery);
+            echo "<h3>Coach Details</h3>";
+            $coachDetailsQuery = "SELECT * FROM coach ";
+            $coachResult = $conn->query($coachDetailsQuery);
 
-if ($coachResult->num_rows > 0) {
-    echo "<table border='1'>";
-    echo "<tr>
-            <th>Coach ID</th>
-            <th>Coach Name</th>
-            <th>Coach Age</th>
-            <th>Coach Type</th>
-            <th>Team ID</th>
-            <th>Experience (in years)</th>
-          </tr>";
+            if ($coachResult->num_rows > 0) {
+                echo "<table>";
+                echo "<tr>
+                        <th>Coach ID</th>
+                        <th>Coach Name</th>
+                        <th>Coach Age</th>
+                        <th>Coach Type</th>
+                        <th>Team ID</th>
+                        <th>Experience (in years)</th>
+                    </tr>";
 
-    while ($row = $coachResult->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["coach_id"] . "</td>";
-        echo "<td>" . $row["coachname"] . "</td>";
-        echo "<td>" . $row["coach_age"] . "</td>";
-        echo "<td>" . $row["coach_type"] . "</td>";
-        echo "<td>" . $row["team_id"] . "</td>";
-        echo "<td>" . $row["experience_in_years"] . "</td>";
-        echo "</tr>";
-    }
+                while ($row = $coachResult->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["coach_id"] . "</td>";
+                    echo "<td>" . $row["coachname"] . "</td>";
+                    echo "<td>" . $row["coach_age"] . "</td>";
+                    echo "<td>" . $row["coach_type"] . "</td>";
+                    echo "<td>" . $row["team_id"] . "</td>";
+                    echo "<td>" . $row["experience_in_years"] . "</td>";
+                    echo "</tr>";
+                }
 
-    echo "</table>";
-} else {
-    echo "<p>No coach details found</p>";
-}
-        
-
-     
-}
-
-
-?>
-
-</div>
+                echo "</table>";
+            } else {
+                echo "<p>No coach details found</p>";
+            }
+        }
+        ?>
+    </div>
 </body>
 </html>
+
 
 <?php
 $conn->close();
