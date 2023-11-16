@@ -3,7 +3,7 @@ $host = "localhost";
 $user = "root";
 $password = '';
 $db_name = "sports";
-
+$j = 0;
 $conn = mysqli_connect($host, $user, $password, $db_name);
 
 if(mysqli_connect_errno()) {
@@ -19,17 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST['type'];
     $style = $_POST['style'];
     $team_id = $_POST['team_id'];
+    
 
     // Perform the SQL query to insert data into the 'players' table
     $sql = "INSERT INTO players (player_id, playername, age, country, type, style, team_id) VALUES ('$player_id', '$playername', '$age', '$country', '$type', '$style', '$team_id')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Player added successfully";
+        $j = 1;
+        
+        // Add more player details as needed
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,6 +139,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         input[type="submit"]:hover {
             background-color: #005599;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -172,8 +196,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="team_id">Team ID:</label>
             <input type="text" id="team_id" name="team_id" required>
 
+            <br>
             <input type="submit" value="Add Player">
         </form>
+
+        <?php
+        if ($j == 1) {
+            
+            // Display Player Details
+            echo "<h3>Player Details</h3>";
+            $playerDetailsQuery = "SELECT p.player_id, p.playername, p.age, p.country, p.type, p.style, p.team_id, t.team_id, t.teamname FROM players p INNER JOIN team t ON t.team_id = p.team_id  WHERE p.team_id = '$team_id'";
+ $playerResult = $conn->query($playerDetailsQuery);
+
+            if ($playerResult->num_rows > 0) {
+                echo "<table>";
+                echo "<tr>
+                        <th>Player ID</th>
+                        <th>Player Name</th>
+                        <th>Age</th>
+                        <th>Country</th>
+                        <th>Type</th>
+                        <th>Style</th>
+                      </tr>";
+                while ($row = $playerResult->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["player_id"] . "</td>";
+                    echo "<td>" . $row["playername"] . "</td>";
+                    echo "<td>" . $row["age"] . "</td>";
+                    echo "<td>" . $row["country"] . "</td>";
+                    echo "<td>" . $row["type"] . "</td>";
+                    echo "<td>" . $row["style"] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p>No player details found</p>";
+            }
+        }
+        ?>
     </div>
 </body>
 </html>
