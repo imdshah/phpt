@@ -37,11 +37,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Update Match</title>
     <link rel="stylesheet" type="text/css" href="style1.css">
     <style>
+        /* Add your custom styles here */
+        /* For example: */
         body {
             font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-            background-color: #f7f7f7;
         }
 
         .taskbar {
@@ -95,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         form {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
             justify-content: center;
             align-items: center;
@@ -108,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #333;
         }
 
-        input {
+        input, select {
             padding: 10px;
             width: 100%;
             box-sizing: border-box;
@@ -117,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 16px;
         }
 
-        input[type="submit"] {
+        .button {
             background-color: #004080;
             color: #fff;
             cursor: pointer;
@@ -129,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 18px;
         }
 
-        input[type="submit"]:hover {
+        .button:hover {
             background-color: #005599;
         }
     </style>
@@ -164,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="ground">Ground:</label>
             <input type="text" id="ground" name="ground" required>
 
-            <input type="submit" value="Update Match">
+            <input type="submit" value="Update Match" class="button">
         </form>
     </div>
 </body>
